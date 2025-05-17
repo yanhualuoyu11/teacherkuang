@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>匡老师精品培优课程</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+        
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --accent: #ff5722;
+            --success: #4caf50;
+            --warning: #ff9800;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(-45deg, #f5f7fa, #e8f4f8, #f0f5ff, #f5f7fa);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .poster {
+            max-width: 850px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .poster:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 8s linear infinite;
+            opacity: 0.5;
+        }
+        
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid;
+            border-image: linear-gradient(to right, var(--primary), var(--secondary)) 1;
+            display: inline-block;
+        }
+        
+        .highlight {
+            background: linear-gradient(to right, rgba(255, 241, 235, 0.8), rgba(255, 241, 235, 0.4));
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border-left: 5px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .highlight:hover {
+            transform: scale(1.02);
+        }
+        
+        .price {
+            font-size: 2.2rem;
+            color: var(--accent);
+            font-weight: bold;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.5rem;
+        }
+        
+        .discount {
+            background-color: var(--accent);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(255, 87, 34, 0.3);
+            animation: pulseScale 1.5s infinite;
+        }
+        
+        @keyframes pulseScale {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .benefit-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary);
+        }
+        
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-item h3 {
+            color: var(--primary);
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+        
+        .course-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .course-category {
+            background: rgba(37, 117, 252, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .course-category h4 {
+            color: var(--secondary);
+            margin-top: 0;
+        }
+        
+        .course-category ul {
+            padding-left: 20px;
+        }
+        
+        .tagline {
+            font-style: italic;
+            text-align: center;
+            color: #666;
+            margin: 30px 0;
+            font-size: 1.2rem;
+            position: relative;
+        }
+        
+        .tagline::before, .tagline::after {
+            content: """;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .cta {
+            background: linear-gradient(135deg, var(--success), #66bb6a);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            animation: pulse 6s linear infinite;
+            opacity: 0.3;
+        }
+        
+        .cta h2 {
+            margin-top: 0;
+            font-size: 1.8rem;
+            position: relative;
+        }
+        
+        .cta p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            position: relative;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, var(--warning), #ffab40);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 152, 0, 0.6);
+        }
+        
+        .cta-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.05), rgba(37, 117, 252, 0.05));
+            color: #666;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .price {
+                font-size: 1.8rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .benefits {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="poster">
+        <div class="header">
+            <h1>匡老师精品培优课程优惠报名</h1>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">创意美学课程</h2>
+                <p style="font-size: 1.2rem;">绘画、声乐、园艺设计、硬笔/软笔书法</p>
+            </div>
+            
+            <div class="highlight">
+                <h2 class="section-title">限时福利</h2>
+                <div class="price">
+                    <span class="original-price">原价380,000元</span>
+                    <span>报名3科直降60,000元！</span>
+                </div>
+                <div class="price">
+                    <span>惊爆价仅需320,000元</span>
+                    <span class="discount">立省6万！</span>
+                </div>
+                <p style="font-size: 1.1rem; color: var(--accent); font-weight: 500;">名额仅限前20名！</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">课程亮点</h2>
+                <div class="benefits">
+                    <div class="benefit-item">
+                        <h3>超强课时</h3>
+                        <p>2小时/节，精准聚焦核心知识点！高强度训练确保学习效果最大化。</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h3>全能覆盖</h3>
+                        <p>语文、数学、英语、综合理科（物化生）+文科/艺术/技能全拓展！一站式解决所有学习需求。</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h3>名师领航</h3>
+                        <p>匡老师独家授课，20年教学经验，独创教学方法，助力学生全面突破！</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">课程体系</h2>
+                <div class="course-list">
+                    <div class="course-category">
+                        <h4>主科强化</h4>
+                        <p>夯实基础，冲刺高分！针对性解决考试难点。</p>
+                    </div>
+                    <div class="course-category">
+                        <h4>文科精研</h4>
+                        <ul>
+                            <li><strong>语言大师</strong>：德语、法语、俄语、阿拉伯语（语法+场景应用）</li>
+                            <li><strong>人文底蕴</strong>：历史考古、哲学思辨、社会学、地理与环境科学</li>
+                        </ul>
+                    </div>
+                    <div class="course-category">
+                        <h4>理科进阶</h4>
+                        <ul>
+                            <li>物理建模、化学实验</li>
+                            <li>生物探秘、医学基础</li>
+                            <li>建筑工程原理</li>
+                        </ul>
+                    </div>
+                    <div class="course-category">
+                        <h4>艺术赋能</h4>
+                        <ul>
+                            <li>乐器即兴创作</li>
+                            <li>创意美术设计</li>
+                            <li>表演艺术训练</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tagline">
+                "医老师一对一培优，3科立减6万！让孩子天赋全面爆发！"
+            </div>
+            
+            <div class="cta">
+                <h2>立即行动</h2>
+                <p><strong>专属咨询：</strong> 微信/电话 138-XXXX-XXXX</p>
+                <p><strong>微信公众号：</strong> XX-XXXXXXX</p>
+                <p>抢占名额：早报名享优惠，成就孩子全能成长！</p>
+                <a href="#" class="cta-button">立即报名</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>用匠心育英才 · 用热爱成就卓越</p>
+        </div>
+    </div>
+</body>
+</html>
