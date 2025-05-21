@@ -200,6 +200,13 @@
                 font-size: 1.8rem;
             }
         }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
     </style>
 </head>
 <body>
@@ -208,52 +215,141 @@
             <h1>名师团队</h1>
         </div>
         
-        <div class="content">
-            <div class="teacher-card">
-                <div class="teacher-header">
-                    <h2 class="teacher-name">赵老师</h2>
-                    <p class="teacher-title">文科阅读理解专家 | 理科压轴题大师</p>
-                </div>
-                
-                <div class="teacher-body">
-                    <div class="specialty">
-                        <div class="specialty-item">
-                            <h3>文科阅读理解提升</h3>
-                            <p>独创"三阶阅读法"，帮助学生快速抓住文章核心，提升答题准确率。擅长现代文阅读、古诗文鉴赏和作文指导。</p>
-                        </div>
-                        <div class="specialty-item">
-                            <h3>理科压轴专长</h3>
-                            <p>专注数学、物理压轴题突破，总结"五步解题法"，让难题变得有章可循。尤其擅长函数综合题和力学难题。</p>
-                        </div>
-                    </div>
-                    
-                    <div class="quote">
-                        老子真nb！教育不是灌输，而是点燃火焰。让我帮你点燃学习的激情！
-                    </div>
-                    
-                    <h3>教学成果</h3>
-                    <ul>
-                        <li>10年教龄，培养出5名高考状元</li>
-                        <li>学生平均阅读理解提分30+</li>
-                        <li>理科压轴题得分率提升至85%</li>
-                        <li>独创"思维导图解题法"获省级教学成果奖</li>
-                    </ul>
-                    
-                    <h3 style="margin-top: 30px;">教学理念</h3>
-                    <p>"每个学生都是独特的个体，我的任务是发现他们的闪光点并放大。文科要培养感知力，理科要训练逻辑思维，两者结合才能成就全面发展的学生。"</p>
-                </div>
-            </div>
-            
-            <a href="index.html" class="back-button">返回课程主页</a>
+        <div class="content" id="teachers-container">
+            <div class="loading">加载中...</div>
         </div>
         
         <div class="footer">
-            <p>用匠心育英才 · 用热爱成就卓越</p>
+            <p>用匠心育英才 · 开启新对话</p>
         </div>
         
         <div class="disclaimer">
             *仅限娱乐，切勿当真
         </div>
     </div>
+
+    <script>
+        // 教师数据 - 只需修改这个数组即可更新教师信息
+        const teachersData = [
+            {
+                name: "赵老师",
+                title: "文科阅读理解专家 | 理科压轴题大师",
+                specialties: [
+                    {
+                        title: "文科阅读理解提升",
+                        description: "独创'三阶阅读法'，帮助学生快速抓住文章核心，提升答题准确率。擅长现代文阅读、古诗文鉴赏和作文指导。"
+                    },
+                    {
+                        title: "理科压轴专长",
+                        description: "专注数学、物理压轴题突破，总结'五步解题法'，让难题变得有章可循。尤其擅长函数综合题和力学难题。"
+                    }
+                ],
+                quote: "老子真nb！教育不是灌输，而是点燃火焰。让我帮你点燃学习的激情！",
+                achievements: [
+                    "10年教龄，培养出5名高考状元",
+                    "学生平均阅读理解提分30+",
+                    "理科压轴题得分率提升至85%",
+                    "独创'思维导图解题法'获省级教学成果奖"
+                ],
+                philosophy: "每个学生都是独特的个体，我的任务是发现他们的闪光点并放大。文科要培养感知力，理科要训练逻辑思维，两者结合才能成就全面发展的学生。"
+            },
+            {
+                name: "朱老师",
+                title: "非遗文化传承人 | 变脸艺术大师",
+                specialties: [
+                    {
+                        title: "非遗变脸教学",
+                        description: "川剧变脸第28代传人，独创'青少年变脸启蒙课程'，将传统文化与现代教学完美结合。"
+                    },
+                    {
+                        title: "舞台表演训练",
+                        description: "系统化表演训练体系，从基本功到舞台表现力，全面提升学生艺术素养。"
+                    }
+                ],
+                quote: "变的不只是脸，更是人生的无限可能！",
+                achievements: [
+                    "国家级非遗传承人",
+                    "培养30+青少年变脸演员",
+                    "创新'卡通变脸'教学法获文化部表彰",
+                    "带领学生登上央视春晚舞台"
+                ],
+                philosophy: "传统文化需要创新传承，我的课堂既有千年技艺的沉淀，又有符合现代青少年兴趣的教学方式，让非遗文化焕发新生。"
+            }
+        ];
+
+        // 渲染教师卡片
+        function renderTeachers() {
+            const container = document.getElementById('teachers-container');
+            container.innerHTML = '';
+
+            teachersData.forEach(teacher => {
+                const card = document.createElement('div');
+                card.className = 'teacher-card';
+                
+                // 教师头部信息
+                const header = document.createElement('div');
+                header.className = 'teacher-header';
+                header.innerHTML = `
+                    <h2 class="teacher-name">${teacher.name}</h2>
+                    <p class="teacher-title">${teacher.title}</p>
+                `;
+                
+                // 教师专长
+                const specialties = document.createElement('div');
+                specialties.className = 'specialty';
+                teacher.specialties.forEach(specialty => {
+                    specialties.innerHTML += `
+                        <div class="specialty-item">
+                            <h3>${specialty.title}</h3>
+                            <p>${specialty.description}</p>
+                        </div>
+                    `;
+                });
+                
+                // 教师格言
+                const quote = document.createElement('div');
+                quote.className = 'quote';
+                quote.textContent = teacher.quote;
+                
+                // 教学成果
+                const achievements = document.createElement('div');
+                achievements.innerHTML = `
+                    <h3>教学成果</h3>
+                    <ul>
+                        ${teacher.achievements.map(ach => `<li>${ach}</li>`).join('')}
+                    </ul>
+                `;
+                
+                // 教学理念
+                const philosophy = document.createElement('div');
+                philosophy.innerHTML = `
+                    <h3 style="margin-top: 30px;">教学理念</h3>
+                    <p>"${teacher.philosophy}"</p>
+                `;
+                
+                // 组装教师卡片
+                const body = document.createElement('div');
+                body.className = 'teacher-body';
+                body.appendChild(specialties);
+                body.appendChild(quote);
+                body.appendChild(achievements);
+                body.appendChild(philosophy);
+                
+                card.appendChild(header);
+                card.appendChild(body);
+                container.appendChild(card);
+            });
+
+            // 添加返回按钮
+            const backButton = document.createElement('a');
+            backButton.href = 'index.html';
+            backButton.className = 'back-button';
+            backButton.textContent = '返回课程主页';
+            container.appendChild(backButton);
+        }
+
+        // 页面加载完成后渲染教师卡片
+        document.addEventListener('DOMContentLoaded', renderTeachers);
+    </script>
 </body>
 </html>
